@@ -1,0 +1,133 @@
+---
+title: "Les vecteurs"
+author: ''
+date: ''
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  html_document:
+    toc: yes
+    toc_depth: 2
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+```
+## Création d'un vecteur
+Pour créer un vecteur, la façon la plus simple est utiliser la fonction **`c()`**.
+
+```{r}
+# Exemple x=[1 4 5]
+x=c(1,4,5)
+x
+```
+
+Pour créer une série régulière, `R` propose les fonctions `:`, `seq()` et la fonction `rep()`.
+
+
+```{r}
+# exemple série de 1 à 10
+1:10
+```
+
+
+```{r}
+# série de 20 à 2
+20:2
+```
+
+```{r}
+1.2:5.7  
+```
+
+```{r}
+# générer une séquence à l'aide de la fonction `seq()`
+# taper `?seq` pour consulter l'aide de la fonction
+seq(from=1,to=10)
+```
+
+```{r}
+# introduisons les arguments `by' et `len`
+seq(1,3,by=0.5)  # création d'une séquence de 1 à 3 avec un pas de 0.5
+seq(1,3, len=5) # création d'une séquence de 1 à 2 de longueur 10
+```
+
+```{r}
+# vecteur contenant des répétitions
+rep(5,times=5)
+```
+
+```{r}
+rep(c(1,2),6) # répéter (1,2) 6 fois.
+```
+
+
+```{r}
+rep(c(1,2),each=3) # répéter chaque éléments du vecteur (1,2) 3 fois
+```
+
+```{r}
+rep(c(1,2),each=3,len=10)
+```
+
+## Indexation et accés
+
+```{r}
+# indexation
+x=seq(1,5,len=15)
+x
+```
+
+```{r}
+x[5] # extraction de la 5ième valeur
+x[-4] # éliminer la valeur du 4ième index
+x[x>=1.2] # extraire les valeurs >= à 1.2
+```
+
+```{r}
+x[1:4]      # extraire les éléments de x de la première position à la 4ième.
+x[-c(1,5)]  # afficher toutes les valeurs de x suaf la 1ière et la 5ième valeur.
+```
+
+## Statistiques élémentaires
+
+```{r}
+# la longueur d'un vecteur est obtenu à l'aide de la fonction length
+length(x)
+```
+
+```{r}
+# maximum
+max(x)
+```
+
+```{r}
+min(x)
+sum(x) # la somme des val de x
+cumsum(x) # la somme cumulée
+prod(x) # produit des val de x
+cumprod(x) # produit cumulé
+```
+
+```{r}
+which.min(x)     # donne la position pour laquelle x est minimale
+which(x>3.3)  # donne les positions pour lesquelles les valeurs de x sont supèrieur à 3.3
+```
+
+```{r}
+# la moyenne empirique
+mean(x)
+```
+
+```{r}
+# multiplication d'un vecteur par un scalaire
+3*x
+```
+
+```{r}
+# x'x produit scalaire
+crossprod(x)
+# ou encore
+t(x)%*%x
+```
+
