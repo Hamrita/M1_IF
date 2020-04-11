@@ -4,10 +4,7 @@ author: ''
 date: ''
 output:
   pdf_document:
-    number_sections: true 
     keep_tex: yes
-    toc: yes
-    toc_depth: 2
   html_document:
     toc: yes 
     toc_depth: 2
