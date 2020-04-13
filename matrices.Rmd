@@ -1,0 +1,214 @@
+---
+title: "Matrices - Array - Dataframe"
+author: "Mohamed Essaied Hamrita, PhD"
+date: "13/04/2020"
+output: 
+  html_document: 
+    code_folding: hide
+    fig_width: 5
+    highlight: tango
+    theme: simplex
+    keep_md: yes
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+```
+
+
+## Matrices
+Les matrices sont les objets R dans lesquels les éléments sont disposés selon une disposition rectangulaire à deux dimensions. Ils contiennent des éléments de **<span style="color: red;">mêmes types atomiques</span>**. Nous utilisons des matrices contenant des éléments numériques à utiliser dans les calculs mathématiques.
+La syntaxe de base pour créer une matrice est:
+
+```{r, eval=F}
+matrix(data, ncol, nrow, byrow)
+```
+
+Où les arguments sont décrit comme suit:
+- data: un vecteur (nmérique, ou caractère ou logique)
+- ncol: un nombre représentant le nombre des colonnes
+- nrow: un nombre représentant le nombre des lignes
+- byrow: c'est une valeur logique (TRUE si le remplissage se fait ligne par ligne et FALSE (par défaut) sinon.
+
+
+```{R}
+# Exemple 1:
+matrix(1:12,ncol=3,nrow=4) # remplissage par colonnes
+```
+
+```{R}
+# Exemple 2:
+matrix(1:12,ncol=3,nrow=4, byrow=T) # remplissage par lignes
+```
+
+```{R}
+# définir des noms pour les colonnes et les lignes
+M1=matrix(1:12,ncol=3,nrow=4) 
+colnames(M1)=c("x1","x2","x3")
+rownames(M1)=c("l1","l2","l3","l4")
+M1
+```
+
+On peut aussi créer une matrice en utilisant cbind() ou rbind()
+
+
+```{R}
+xx1=c(1,4,5); xx2=c(2,7,1)
+(matx=cbind(xx1,xx2))
+(matxxt=rbind(xx1,xx2))
+```
+
+### Accès aux éléments d'une matrice
+Les éléments d'une matrice sont accessibles en utilisant l'index de la ligne et de la colonne de l'élément.
+
+
+```{R}
+M1[2,3]  # extraire l'élément de la 2ieme ligne et 
+# la 3ieme colonne
+M1[,2] # extraire la deuxième colonne
+M1[-1, 2:3] # extraire la 2ieme et la 3ieme colonne privé 
+ # de la première ligne.
+```
+
+### Opérations sur les matrices
+Diverses opérations mathématiques sont effectuées sur les matrices à l'aide des opérateurs R. Le résultat de l'opération est également une matrice.
+Les dimensions (nombre de lignes et de colonnes) doivent être identiques pour les matrices impliquées dans l'opération.
+
+### Addition, soustraction, multiplication et division
+Les opérateurs +, -, * et / font, respectivement, l'addition, la soustraction, la multiplication et la division **<font color=red>terme à terme</font>**. Donc les matrices, dans ce cas, doivent être de mêmes dimensions.
+
+
+```{R}
+(A=matrix(c(-2,1,0,4),2,2))
+(B=matrix(c(4,-1,7,3),2,2))
+A+B  # addition
+```
+#### soustraction
+A-B
+```
+```{R}
+# Multiplication
+A*B
+```
+
+```{R}
+# Division
+A/B
+```
+
+### Calcul matriciel
+
+* La transposée d'une matrice se fait à l'aide de l'instruction *t()*.
+* Le produit matriciel se fait par la commande *%*%*.
+* La fonction *det()* renvoie le déterminant.
+* La fonction *diag(arg)* donne la diagonale si l'argument (arg) est une matrice et crée une matrice diagonale si l'argument (arg) est un vecteur.
+* La fonction *solve()* a double rôle:
+  * solve(A) donne l'inverse de la matrice A
+  * solve(A,b) donne la solution du système AX=b
+
+
+```{R}
+# transposée
+t(A)
+# Produit matriciel (noter qu'il faut ncA=nrB)
+A%*%B
+```
+
+```{R}
+det(A) # déterminant
+diag(A) # extraire la diagonale de A
+diag(c(2,8,7)) # créer une matrice diagonale
+# noter que la trace est déduite à l'aide sum(diag(mat))
+sum(diag(A)) # la trace de A
+```
+```{R}
+solve(A) # l'inverse de A
+solve(A, c(-2,1))
+```
+
+### Vecteurs et valeurs propres
+La fonction *eigen(mat)* renvoie une liste comprenant les valeurs et les vecteurs propres de la matrice *mat*.
+
+
+```{R}
+eig=eigen(A)
+eig$values  # valeurs propres
+eig$vectors # vecteurs propres
+```
+## Array
+Les tableaux (array) sont les objets de données R qui peuvent stocker des données dans plus de deux dimensions. Par exemple - Si nous créons un tableau de dimensions (2, 3, 4), cela crée 4 matrices rectangulaires chacune avec 2 lignes et 3 colonnes. Les tableaux peuvent stocker uniquement le type de données.
+
+Un tableau est créé à l'aide de la fonction array (). Il prend des vecteurs en entrée et utilise les valeurs du paramètre dim pour créer un tableau.
+
+
+```{R}
+vect1 <- c(5,9,3)
+vect2 <- c(10,11,12,13,14,15)
+
+result <- array(c(vect1,vect2),dim = c(3,3,2))
+result
+result[,1,1]
+result[1,1,]
+```
+## Data frames
+Une data frame est une table ou une structure de type tableau à deux dimensions dans laquelle chaque colonne contient les valeurs d'une variable et chaque ligne contient un ensemble de valeurs de chaque colonne.
+Une data frame se caractérise par:
+* Les noms des colonnes **ne doit pas être vide**.
+* les noms des lignes doivent être uniques.
+* les données stockées dans une data frame de données peuvent être de type numérique, facteur, logique ou caractère.
+* chaque colonne doit contenir le même nombre d'éléments de données.
+Considérons le tableau des données suivant:
+
+| Noms    | Genre | Age | Taille (cm) | Poids (Kg) |
+|---------|:-----:|-----|:-----------:|:----------:|
+| Youssef |   M   | 8   |     100     |     35     |
+| Selma   |   F   | 4   |      60     |     21     |
+| Khaled  |   M   | 40  |     172     |     81     |
+| Sarra   |   F   | 12  |     120     |     42     |
+
+
+```{R}
+Noms=c("Youssef", "Selma", "Khaled", "Sarra")
+Genre=c("M", "F", "M", "F")
+Age=c(8,4,40,12)
+Taille=c(100,60,172,120)
+Poids=c(35,21,81,42)
+(tab1=data.frame(Noms=Noms, Genre=Genre,
+                 Taille=Taille, Poids=Poids, stringsAsFactors = FALSE))
+```
+
+`str()` renvoie la structure de l'objet. La fonction `summary()` donne un résumé statistique du tableau des données (min, max, mean, etc)
+
+
+```{R}
+str(tab1)
+```
+
+```{r}
+summary(tab1)
+```
+
+L'accés aux éléments du tableau des données de classe `data.frame` se fait de diverses façons. On peut accéder aux éléments d'une `data.frame` de la même manière comme les matrices (puisque une `data.frame` est un tableau à deux dimensions). 
+
+
+```{r}
+tab1[1,3]  
+tab1[, 2]  # accéder à la deuxième colonne
+tab1[-1,]  # tab1 sauf la première ligne
+```
+
+On peut aussi accéder aux éléments d'une `data.frame` en utilisant les noms des variables. Avant d'appliquer cette manière, affichons les noms du tableau des données en utilisant la fonction `names()`.
+
+
+```{R}
+names(tab1)
+```
+
+```{R}
+tab1$Noms # ou encore tab1['noms']
+tab1['Noms']
+```
+
+Pour ajouter une ligne (une colonne), on peut utiliser la fonction `rbind()`(`cbind()`).

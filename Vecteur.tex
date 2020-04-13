@@ -1,0 +1,454 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Les vecteurs},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Les vecteurs}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{cruxe9ation-dun-vecteur}{%
+\subsection{Création d'un vecteur}\label{cruxe9ation-dun-vecteur}}
+
+Pour créer un vecteur, la façon la plus simple est utiliser la fonction
+\textbf{\texttt{c()}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Exemple x=[1 4 5]}
+\NormalTok{x=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 4 5
+\end{verbatim}
+
+Pour créer une série régulière, \texttt{R} propose les fonctions
+\texttt{:}, \texttt{seq()} et la fonction \texttt{rep()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# exemple série de 1 à 10}
+\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# série de 20 à 2}
+\DecValTok{20}\OperatorTok{:}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{1.2}\OperatorTok{:}\FloatTok{5.7}  
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1.2 2.2 3.2 4.2 5.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# générer une séquence à l'aide de la fonction `seq()`}
+\CommentTok{# taper `?seq` pour consulter l'aide de la fonction}
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\DecValTok{1}\NormalTok{,}\DataTypeTok{to=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# introduisons les arguments `by' et `len`}
+\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DataTypeTok{by=}\FloatTok{0.5}\NormalTok{)  }\CommentTok{# création d'une séquence de 1 à 3 avec un pas de 0.5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1.0 1.5 2.0 2.5 3.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{, }\DataTypeTok{len=}\DecValTok{5}\NormalTok{) }\CommentTok{# création d'une séquence de 1 à 2 de longueur 10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1.0 1.5 2.0 2.5 3.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# vecteur contenant des répétitions}
+\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DataTypeTok{times=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5 5 5 5 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rep}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DecValTok{6}\NormalTok{) }\CommentTok{# répéter (1,2) 6 fois.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1 2 1 2 1 2 1 2 1 2 1 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rep}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DataTypeTok{each=}\DecValTok{3}\NormalTok{) }\CommentTok{# répéter chaque éléments du vecteur (1,2) 3 fois}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1 1 1 2 2 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rep}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DataTypeTok{each=}\DecValTok{3}\NormalTok{,}\DataTypeTok{len=}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1 1 1 2 2 2 1 1 1 2
+\end{verbatim}
+
+\hypertarget{indexation-et-accuxe9s}{%
+\subsection{Indexation et accés}\label{indexation-et-accuxe9s}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# indexation}
+\NormalTok{x=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DataTypeTok{len=}\DecValTok{15}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1.000000 1.285714 1.571429 1.857143 2.142857 2.428571 2.714286
+ [8] 3.000000 3.285714 3.571429 3.857143 4.142857 4.428571 4.714286
+[15] 5.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\DecValTok{5}\NormalTok{] }\CommentTok{# extraction de la 5ième valeur}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.142857
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\OperatorTok{-}\DecValTok{4}\NormalTok{] }\CommentTok{# éliminer la valeur du 4ième index}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1.000000 1.285714 1.571429 2.142857 2.428571 2.714286 3.000000
+ [8] 3.285714 3.571429 3.857143 4.142857 4.428571 4.714286 5.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[x}\OperatorTok{>=}\FloatTok{1.2}\NormalTok{] }\CommentTok{# extraire les valeurs >= à 1.2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1.285714 1.571429 1.857143 2.142857 2.428571 2.714286 3.000000
+ [8] 3.285714 3.571429 3.857143 4.142857 4.428571 4.714286 5.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]      }\CommentTok{# extraire les éléments de x de la première position à la 4ième.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1.000000 1.285714 1.571429 1.857143
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{)]  }\CommentTok{# afficher toutes les valeurs de x suaf la 1ière et la 5ième valeur.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1.285714 1.571429 1.857143 2.428571 2.714286 3.000000 3.285714
+ [8] 3.571429 3.857143 4.142857 4.428571 4.714286 5.000000
+\end{verbatim}
+
+\hypertarget{statistiques-uxe9luxe9mentaires}{%
+\subsection{Statistiques
+élémentaires}\label{statistiques-uxe9luxe9mentaires}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# la longueur d'un vecteur est obtenu à l'aide de la fonction length}
+\KeywordTok{length}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# maximum}
+\KeywordTok{max}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{min}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(x) }\CommentTok{# la somme des val de x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cumsum}\NormalTok{(x) }\CommentTok{# la somme cumulée}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  1.000000  2.285714  3.857143  5.714286  7.857143 10.285714 13.000000
+ [8] 16.000000 19.285714 22.857143 26.714286 30.857143 35.285714 40.000000
+[15] 45.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{prod}\NormalTok{(x) }\CommentTok{# produit des val de x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 3112378
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cumprod}\NormalTok{(x) }\CommentTok{# produit cumulé}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1.000000e+00 1.285714e+00 2.020408e+00 3.752187e+00 8.040400e+00
+ [6] 1.952669e+01 5.300100e+01 1.590030e+02 5.224385e+02 1.865852e+03
+[11] 7.196856e+03 2.981555e+04 1.320403e+05 6.224756e+05 3.112378e+06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{which.min}\NormalTok{(x)     }\CommentTok{# donne la position pour laquelle x est minimale}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{which}\NormalTok{(x}\OperatorTok{>}\FloatTok{3.3}\NormalTok{)  }\CommentTok{# donne les positions pour lesquelles les valeurs de x sont supèrieur à 3.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 10 11 12 13 14 15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# la moyenne empirique}
+\KeywordTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# multiplication d'un vecteur par un scalaire}
+\DecValTok{3}\OperatorTok{*}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1]  3.000000  3.857143  4.714286  5.571429  6.428571  7.285714  8.142857
+ [8]  9.000000  9.857143 10.714286 11.571429 12.428571 13.285714 14.142857
+[15] 15.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# x'x produit scalaire}
+\KeywordTok{crossprod}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         [,1]
+[1,] 157.8571
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ou encore}
+\KeywordTok{t}\NormalTok{(x)}\OperatorTok{%*%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         [,1]
+[1,] 157.8571
+\end{verbatim}
+
+\end{document}
