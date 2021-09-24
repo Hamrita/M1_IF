@@ -179,10 +179,19 @@ A+B  # addition
 [1,]    2    7
 [2,]    0    7
 ```
+
 ```r
 #### soustraction
 A-B
 ```
+
+```
+     [,1] [,2]
+[1,]    -6   -7
+[2,]     2    1
+
+```
+
 
 ```r
 # Multiplication
