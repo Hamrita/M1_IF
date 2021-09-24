@@ -179,6 +179,7 @@ A+B  # addition
 [1,]    2    7
 [2,]    0    7
 ```
+```r
 #### soustraction
 A-B
 ```
