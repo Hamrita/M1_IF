@@ -181,7 +181,7 @@ A+B  # addition
 ```
 
 ```r
-#### soustraction
+# soustraction
 A-B
 ```
 
